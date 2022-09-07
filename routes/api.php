@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('test', [ TestController::class, 'index' ])->name('index');
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('cognito')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('cognito')->user();
+
+    return  $user->token;
+});
