@@ -11,6 +11,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Orchestra\Testbench\TestCase as Orchestra;
 use phpseclib3\Crypt\RSA;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Route;
 
 abstract class TestCase extends Orchestra
 {
@@ -28,7 +29,7 @@ abstract class TestCase extends Orchestra
 
         \Route::get('user', function () {
             return auth()->user();
-        })->middleware(SubstituteBindings::class)->middleware('auth');
+        })->middleware(SubstituteBindings::class)->middleware('api');
     }
 
     /**

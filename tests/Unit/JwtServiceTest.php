@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Exceptions\InvalidTokenException;
 use App\Services\JwkConverter;
 use App\Services\JwtService;
